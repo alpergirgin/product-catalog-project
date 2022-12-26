@@ -80,7 +80,7 @@ const signUpPage: NextPage = () => {
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdLockOutline className='text-gray-400 m-2' />
-                                <input onChange={passwordControl} type="password" name='password' placeholder='Type Password Again' className='bg-gray-100 outline-none text-sm' />
+                                <input onChange={passwordControl} type="password" name='password' placeholder='Confirm Password' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdPhone className='text-gray-400 m-2' />
