@@ -59,12 +59,13 @@ const productListPage: NextPage = (props) => {
             <div className='m-8 p-8 grid grid-cols-4 gap-1 justify-evenly '>
 
                 {/* 1 */}
-                <div className='m-8 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
-                    <button onClick={() => clickHeart("0", props)}>
+                <div className='m-4 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
+                    <button className='h-1 w-1' onClick={() => clickHeart("0", props)}>
                         <BsFillSuitHeartFill id="heart0" className='absolute w-6 h-6 top-3 right-3 fill-white stroke-1 stroke-gray hover:fill-red-500'></BsFillSuitHeartFill>
                     </button>
-                    <div >
-                        <a onClick={() => selectPage(props.modelData[0])} href="http://localhost:3000/bookPage"><img src={"https://assignment-api.piton.com.tr" + props.modelData[0].image} alt="Image" /></a>
+
+                    <a onClick={() => selectPage(props.modelData[0])} href="http://localhost:3000/bookPage"><img className='drop-shadow-xl mb-96 h-[24rem]' src={"https://assignment-api.piton.com.tr" + props.modelData[0].image} alt="Image" /></a>
+                    <div className='absolute bottom-8 left-8 right-8'>
                         <h1 className='text-xl m-2 p-2 text-center font-bold text-gray-900 dark:text-white'>{props.modelData[0].name}</h1>
                         <div className='border-2 bg-black-500 w-full border-black-500 inline-block mb-5'></div>
                         <h1 className='text-4xl text-center  font-semibold text-blue-900'>{props.modelData[0].price}.00 ₺</h1>
@@ -72,12 +73,13 @@ const productListPage: NextPage = (props) => {
                 </div>
 
                 {/* 2 */}
-                <div className='m-8 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
-                    <button onClick={() => clickHeart("1", props)}>
+                <div className='m-4 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
+                    <button className='h-1 w-1' onClick={() => clickHeart("1", props)}>
                         <BsFillSuitHeartFill id="heart1" className='absolute w-6 h-6 top-3 right-3 fill-white stroke-1 stroke-gray hover:fill-red-500'></BsFillSuitHeartFill>
                     </button>
-                    <div >
-                        <a onClick={() => selectPage(props.modelData[1])} href="http://localhost:3000/bookPage"><img src={"https://assignment-api.piton.com.tr" + props.modelData[1].image} alt="Image" /></a>
+
+                    <a onClick={() => selectPage(props.modelData[1])} href="http://localhost:3000/bookPage"><img className='drop-shadow-xl mb-96 h-[24rem]' src={"https://assignment-api.piton.com.tr" + props.modelData[1].image} alt="Image" /></a>
+                    <div className='absolute bottom-8 left-6 right-6' >
                         <h1 className='text-xl m-2 p-2 text-center font-bold text-gray-900 dark:text-white'>{props.modelData[1].name}</h1>
                         <div className='border-2 bg-black-500 w-full border-black-500 inline-block mb-5'></div>
                         <h1 className='text-4xl text-center  font-semibold text-blue-900'>{props.modelData[1].price}.00 ₺</h1>
@@ -85,12 +87,13 @@ const productListPage: NextPage = (props) => {
                 </div>
 
                 {/* 3 */}
-                <div className='m-8 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
-                    <button onClick={() => clickHeart("2", props)}>
+                <div className='m-4 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
+                    <button className='h-1 w-1' onClick={() => clickHeart("2", props)}>
                         <BsFillSuitHeartFill id="heart2" className='absolute w-6 h-6 top-3 right-3 fill-white stroke-1 stroke-gray hover:fill-red-500'></BsFillSuitHeartFill>
                     </button>
-                    <div >
-                        <a onClick={() => selectPage(props.modelData[2])} href="http://localhost:3000/bookPage"><img src={"https://assignment-api.piton.com.tr" + props.modelData[2].image} alt="Image" /></a>
+
+                    <a onClick={() => selectPage(props.modelData[2])} href="http://localhost:3000/bookPage"><img className='drop-shadow-xl mb-96 h-[24rem]' src={"https://assignment-api.piton.com.tr" + props.modelData[2].image} alt="Image" /></a>
+                    <div className='absolute bottom-8 left-8 right-8'>
                         <h1 className='text-xl m-2 p-2 text-center font-bold text-gray-900 dark:text-white'>{props.modelData[2].name}</h1>
                         <div className='border-2 bg-black-500 w-full border-black-500 inline-block mb-5'></div>
                         <h1 className='text-4xl text-center  font-semibold text-blue-900'>{props.modelData[2].price}.00 ₺</h1>
@@ -98,12 +101,14 @@ const productListPage: NextPage = (props) => {
                 </div>
 
                 {/* 4 */}
-                <div className='m-8 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
-                    <button onClick={() => clickHeart("3", props)}>
+                <div className='m-4 p-8 relative grid border-2 border-black-500 rounded-3xl bg-white-600 h-[42rem] '>
+                    <button className='h-1 w-1' onClick={() => clickHeart("3", props)}>
                         <BsFillSuitHeartFill id="heart3" className='absolute w-6 h-6 top-3 right-3 fill-white stroke-1 stroke-gray hover:fill-red-500'></BsFillSuitHeartFill>
                     </button>
-                    <div >
-                        <a onClick={() => selectPage(props.modelData[3])} href="http://localhost:3000/bookPage"><img src={"https://assignment-api.piton.com.tr" + props.modelData[3].image} alt="Image" /></a>
+
+
+                    <a onClick={() => selectPage(props.modelData[3])} href="http://localhost:3000/bookPage"><img className='drop-shadow-xl mb-96 h-[24rem]' src={"https://assignment-api.piton.com.tr" + props.modelData[3].image} alt="Image" /></a>
+                    <div className='absolute bottom-8 left-8 right-8 '>
                         <h1 className='text-xl m-2 p-2 text-center font-bold text-gray-900 dark:text-white'>{props.modelData[3].name}</h1>
                         <div className='border-2 bg-black-500 w-full border-black-500 inline-block mb-5'></div>
                         <h1 className='text-4xl text-center  font-semibold text-blue-900'>{props.modelData[3].price}.00 ₺</h1>

@@ -8,7 +8,7 @@ const loginPage: NextPage = () => {
     async function logIn() {
         if (document.getElementById("email").value != "" && document.getElementById("password").value.length != "") {
             const emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if(document.getElementById("email").value.match(emailPattern)) {
+            if (document.getElementById("email").value.match(emailPattern)) {
                 const response = await axios.post('https://assignment-api.piton.com.tr/api/v1/user/login', {
                     "password": document.getElementById("password").value,
                     "email": document.getElementById("email").value
@@ -16,31 +16,31 @@ const loginPage: NextPage = () => {
                 if (response.data.token != "") {
                     localStorage.setItem("token", response.data.token)
                     window.location.href = "http://localhost:3000/productListPage"
-                }else{
-                    alert("Girdiğiniz Kullanıcı Bilgilerine ait kullanıcı hesabı bulunamamıştır.")
+                } else {
+                    alert("Account for the user information you entered could not be found.")
                 }
-                
-            }else{
-                alert("Email formatı hatalı")
+
+            } else {
+                alert("Email format incorrect")
             }
-        }else{
-            alert("Bütün Alanların Doldurulması Zorunludur. Tekrar kontrol ediniz")
+        } else {
+            alert("All blanks must be filled. Please check again.")
         }
     }
     function passwordControl() {
         let password = document.getElementById("password")
-        let passw= /^[a-zA-Z0-9]{6,20}$/
+        let passw = /^[a-zA-Z0-9]{6,20}$/
         let checkPassword = false
-        if(password.value.match(passw)) { 
-          checkPassword = true
+        if (password.value.match(passw)) {
+            checkPassword = true
         }
-        else { 
-          checkPassword = false
+        else {
+            checkPassword = false
         }
         if (password.value != "" && checkPassword) {
             document.getElementById("registerButton").className = 'border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'
             document.getElementById("registerButton").disabled = false
-        }else{
+        } else {
             document.getElementById("registerButton").disabled = true
             document.getElementById("registerButton").className = 'border-2 border-black-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black-500 hover:text-black'
         }
@@ -78,10 +78,10 @@ const loginPage: NextPage = () => {
                             <a href="https://twitter.com/pitonyazilim" className='border-2 border-indigo-200 rounded-full p-3 mx-1'>
                                 <FaTwitter className="text-sm" />
                             </a>
-                            <a href="https://www.instagram.com/pitontechnology/" className='border-2 border-indigo-200 rounded-full p-3 mx-1'>
+                            <a href="https://www.linkedin.com/company/pitontechnology/?originalSubdomain=tr" className='border-2 border-indigo-200 rounded-full p-3 mx-1'>
                                 <FaLinkedinIn className="text-sm" />
                             </a>
-                            <a href="https://www.linkedin.com/company/pitontechnology/?originalSubdomain=tr" className='border-2 border-indigo-200 rounded-full p-3 mx-1'>
+                            <a href="https://www.instagram.com/pitontechnology/" className='border-2 border-indigo-200 rounded-full p-3 mx-1'>
                                 <FaInstagram className="text-sm" />
                             </a>
                             <a href="https://www.youtube.com/channel/UCanr6pm7fLd17pbkKFK-F6w" className='border-2 border-indigo-200 rounded-full p-3 mx-1'>

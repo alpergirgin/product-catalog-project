@@ -8,18 +8,18 @@ const signUpPage: NextPage = () => {
     async function signUp() {
         if (document.getElementById("name").value != "" && document.getElementById("email").value != "" && document.getElementById("phoneNumber").value.length == 19) {
             const emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if(document.getElementById("email").value.match(emailPattern)) {
+            if (document.getElementById("email").value.match(emailPattern)) {
                 const response = await axios.post('https://assignment-api.piton.com.tr/api/v1/user/register', {
                     "name": document.getElementById("name").value,
                     "password": document.getElementById("password").value,
                     "email": document.getElementById("email").value
                 });
                 window.location.href = "http://localhost:3000/loginPage"
-            }else{
-                alert("Email formatı hatalı")
+            } else {
+                alert("Email format incorrect.")
             }
-        }else{
-            alert("Bütün Alanların Doldurulması Zorunludur. Tekrar kontrol ediniz")
+        } else {
+            alert("All blanks must be filled. Please check again.")
         }
     }
     function controlPhoneNumer() {
@@ -47,25 +47,25 @@ const signUpPage: NextPage = () => {
             result += value[i];
         }
         phone.value = result;
-        
+
     }
     function passwordControl() {
         let password = document.getElementById("password")
         let confirmPassword = document.getElementById("confirmPassword")
-        let passw= /^[a-zA-Z0-9]{6,20}$/
+        let passw = /^[a-zA-Z0-9]{6,20}$/
         let checkPassword = false
-        if(confirmPassword.value.match(passw) && password.value.match(passw)) { 
-          checkPassword = true
+        if (confirmPassword.value.match(passw) && password.value.match(passw)) {
+            checkPassword = true
         }
-        else { 
-          checkPassword = false
+        else {
+            checkPassword = false
         }
         if (password.value == confirmPassword.value && confirmPassword.value != "" && password.value != "" && checkPassword) {
-          document.getElementById("registerButton").className = 'border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'
-          document.getElementById("registerButton").disabled = false
-        }else{
-          document.getElementById("registerButton").disabled = true
-          document.getElementById("registerButton").className = 'border-2 border-black-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black-500 hover:text-black'
+            document.getElementById("registerButton").className = 'border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'
+            document.getElementById("registerButton").disabled = false
+        } else {
+            document.getElementById("registerButton").disabled = true
+            document.getElementById("registerButton").className = 'border-2 border-black-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black-500 hover:text-black'
         }
     }
 

@@ -75,17 +75,17 @@ const bookPage: NextPage = (props) => {
             </div>
 
             {/* content */}
-            <div className='m-8 p-8 inset-x-1/4 relative grid border-2 border-black-500 rounded-3xl bg-white-600 grid-rows-2 grid-flow-col gap-4 w-1/2 h-[32rem]'>
+            <div className='m-8 p-8 inset-x-1/4 relative grid border-2 border-black-500 rounded-3xl bg-white-600 grid-rows-2 grid-flow-col gap-4 h-[28rem] w-2/4'>
                 <div className='grid grid-cols-3 divide-x'>
                     <div className='bg-white-500 '>
-                        <img className='h-[28rem]' src={"https://assignment-api.piton.com.tr" + image} alt="Image" />
+                        <img className='h-[24rem]' src={"https://assignment-api.piton.com.tr" + image} alt="Image" />
                     </div>
-                    <div className=' bg-white-500 ml-16 border-2 border-white'>
-                        <div><h1 className='absolute h-24 text-5xl text-left mt-8 py-2'>{name}</h1></div>
-                        <div><p className='absolute h-24 text-2xl text-left mt-36 py-5'>{description}</p></div>
+                    <div className='flex bg-white-500 ml-16 border-2 border-white'>
+                        <div><h1 className='absolute text-l font-bold text-left mt-8 py-2 mr-2'>{name}</h1></div>
+                        <div><p className='absolute text-l text-left mt-16 py-5 mr-2'>{description}</p></div>
                     </div>
                 </div>
-                <div className='absolute top-8 right-8' ><h1 id='likes' className='inline-block mr-4'>{likes} likes</h1>
+                <div className='absolute top-8 right-8' ><h1 id='likes' className='inline-block mr-12 mt-2'>{likes} likes</h1>
                     <button onClick={clickHeart}>
                         <BsFillSuitHeartFill id="heart" className='absolute w-6 h-6 top-3 right-3 fill-white stroke-1 stroke-gray hover:fill-red-500'></BsFillSuitHeartFill>
                     </button></div>
