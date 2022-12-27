@@ -11,6 +11,7 @@
 ![3](https://github.com/alpergirgin/product-catalog-project/blob/main/pages/asset/3.PNG)
 ![4](https://github.com/alpergirgin/product-catalog-project/blob/main/pages/asset/4.PNG)
 ![5](https://github.com/alpergirgin/product-catalog-project/blob/main/pages/asset/5.PNG)
+![6](https://github.com/alpergirgin/product-catalog-project/blob/main/pages/asset/6.PNG)
 ### Product List Page
 ![7](https://github.com/alpergirgin/product-catalog-project/blob/main/pages/asset/7.PNG)
 ![8](https://github.com/alpergirgin/product-catalog-project/blob/main/pages/asset/8.PNG)
