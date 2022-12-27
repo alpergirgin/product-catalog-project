@@ -5,21 +5,68 @@ import { FaFacebookF, FaLinkedinIn, FaGoogle, FaRegEnvelope, FaTwitter, FaInstag
 import { MdLockOutline, MdPhone, MdPerson } from "react-icons/md";
 
 const signUpPage: NextPage = () => {
-    var email: string = "";
-    var password: string = ""
-    let disabled: boolean = true
-    function signUp() {
-        alert("asdasd")
+    async function signUp() {
+        if (document.getElementById("name").value != "" && document.getElementById("email").value != "" && document.getElementById("phoneNumber").value.length == 19) {
+            const emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(document.getElementById("email").value.match(emailPattern)) {
+                const response = await axios.post('https://assignment-api.piton.com.tr/api/v1/user/register', {
+                    "name": document.getElementById("name").value,
+                    "password": document.getElementById("password").value,
+                    "email": document.getElementById("email").value
+                });
+                window.location.href = "http://localhost:3000/loginPage"
+            }else{
+                alert("Email formatı hatalı")
+            }
+        }else{
+            alert("Bütün Alanların Doldurulması Zorunludur. Tekrar kontrol ediniz")
+        }
+    }
+    function controlPhoneNumer() {
+        let phone = document.getElementById("phoneNumber")
+        const value = phone.value.replace(/\D+/g, "");
+        const numberLength = 12;
+        let result = "+";
+        for (let i = 0; i < value.length && i < numberLength; i++) {
+            switch (i) {
+                case 0:
+                    result += "9 (";
+                    continue;
+                case 5:
+                    result += ") ";
+                    break;
+                case 8:
+                    result += "-";
+                    break;
+                case 10:
+                    result += "-";
+                    break;
+                default:
+                    break;
+            }
+            result += value[i];
+        }
+        phone.value = result;
+        
     }
     function passwordControl() {
-        var str = password
-        if (str.match(/[a-z]/g) && str.match(
-            /[A-Z]/g) && str.match(
-                /[0-9]/g) && str.match(
-                    /[^a-zA-Z\d]/g) && str.length >= 6 && str.length <= 20)
-            alert("TRUE")
-        else
-            console.log("false")
+        let password = document.getElementById("password")
+        let confirmPassword = document.getElementById("confirmPassword")
+        let passw= /^[a-zA-Z0-9]{6,20}$/
+        let checkPassword = false
+        if(confirmPassword.value.match(passw) && password.value.match(passw)) { 
+          checkPassword = true
+        }
+        else { 
+          checkPassword = false
+        }
+        if (password.value == confirmPassword.value && confirmPassword.value != "" && password.value != "" && checkPassword) {
+          document.getElementById("registerButton").className = 'border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'
+          document.getElementById("registerButton").disabled = false
+        }else{
+          document.getElementById("registerButton").disabled = true
+          document.getElementById("registerButton").className = 'border-2 border-black-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black-500 hover:text-black'
+        }
     }
 
     return (
@@ -68,25 +115,25 @@ const signUpPage: NextPage = () => {
                         <div className='flex flex-col items-center'>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdPerson className='text-gray-400 m-2' />
-                                <input type="name" name='name' placeholder='Full Name' className='bg-gray-100 outline-none text-sm' />
+                                <input id='name' type="name" name='name' placeholder='Full Name' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <FaRegEnvelope className='text-gray-400 m-2' />
-                                <input type="email" name='email' placeholder='Email' className='bg-gray-100 outline-none text-sm' />
+                                <input id='email' type="email" name='email' placeholder='Email' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdLockOutline className='text-gray-400 m-2' />
-                                <input onChange={passwordControl} type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm' />
+                                <input onChange={passwordControl} id='password' type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdLockOutline className='text-gray-400 m-2' />
-                                <input onChange={passwordControl} type="password" name='password' placeholder='Confirm Password' className='bg-gray-100 outline-none text-sm' />
+                                <input onChange={passwordControl} id='confirmPassword' type="password" name='password' placeholder='Confirm Password' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdPhone className='text-gray-400 m-2' />
-                                <input type="phoneNumber" name='phoneNumber' placeholder='Phone Number' className='bg-gray-100 outline-none text-sm' />
+                                <input onChange={controlPhoneNumer} id='phoneNumber' type="phoneNumber" name='phoneNumber' placeholder='Phone Number' className='bg-gray-100 outline-none text-sm' />
                             </div>
-                            <button disabled onClick={signUp} className='border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'>Register</button>
+                            <button id='registerButton' onClick={signUp} className='border-2 border-black-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black-500 hover:text-black'>Register</button>
                         </div>
                     </div>
                     {/*Sign in*/}

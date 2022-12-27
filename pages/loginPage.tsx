@@ -5,6 +5,46 @@ import { FaFacebookF, FaLinkedinIn, FaGoogle, FaRegEnvelope, FaTwitter, FaInstag
 import { MdLockOutline } from "react-icons/md";
 
 const loginPage: NextPage = () => {
+    async function logIn() {
+        if (document.getElementById("email").value != "" && document.getElementById("password").value.length != "") {
+            const emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(document.getElementById("email").value.match(emailPattern)) {
+                const response = await axios.post('https://assignment-api.piton.com.tr/api/v1/user/login', {
+                    "password": document.getElementById("password").value,
+                    "email": document.getElementById("email").value
+                });
+                if (response.data.token != "") {
+                    localStorage.setItem("token", response.data.token)
+                    window.location.href = "http://localhost:3000/productListPage"
+                }else{
+                    alert("Girdiğiniz Kullanıcı Bilgilerine ait kullanıcı hesabı bulunamamıştır.")
+                }
+                
+            }else{
+                alert("Email formatı hatalı")
+            }
+        }else{
+            alert("Bütün Alanların Doldurulması Zorunludur. Tekrar kontrol ediniz")
+        }
+    }
+    function passwordControl() {
+        let password = document.getElementById("password")
+        let passw= /^[a-zA-Z0-9]{6,20}$/
+        let checkPassword = false
+        if(password.value.match(passw)) { 
+          checkPassword = true
+        }
+        else { 
+          checkPassword = false
+        }
+        if (password.value != "" && checkPassword) {
+            document.getElementById("registerButton").className = 'border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'
+            document.getElementById("registerButton").disabled = false
+        }else{
+            document.getElementById("registerButton").disabled = true
+            document.getElementById("registerButton").className = 'border-2 border-black-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black-500 hover:text-black'
+        }
+    }
     return (
         <div className="flex flex-col items-center justify-center min-h-screen ру-2 bg-gray-100">
             <Head>
@@ -54,11 +94,11 @@ const loginPage: NextPage = () => {
                         <div className='flex flex-col items-center'>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <FaRegEnvelope className='text-gray-400 m-2' />
-                                <input type="email" name='email' placeholder='Email' className='bg-gray-100 outline-none text-sm' />
+                                <input id="email" type="email" name='email' placeholder='Email' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='bg-gray-100 w-64 p-2 flex items-center rounded-full mb-3'>
                                 <MdLockOutline className='text-gray-400 m-2' />
-                                <input type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm' />
+                                <input onClick={passwordControl} id="password" type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm' />
                             </div>
                             <div className='flex justify-between w-64 mb-5'>
                                 <label className='flex items-center text-xs'>
@@ -66,7 +106,7 @@ const loginPage: NextPage = () => {
                                 </label>
                                 <a href="#" className='text-xs'>Forgot Password</a>
                             </div>
-                            <button className='border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'>Sign In</button>
+                            <button id='registerButton' onClick={logIn} className='border-2 border-indigo-500 text-indigo-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-indigo-500 hover:text-white'>Sign In</button>
                         </div>
                     </div>
                     {/*Sign in*/}
